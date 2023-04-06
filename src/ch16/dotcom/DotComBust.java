@@ -14,6 +14,7 @@ public class DotComBust {
     }
 
     private void startPlaying() {
+//        gameHelper.printAll();
         while (!dotComs.isEmpty()) {
             String userGuess = gameHelper.getUserInput("enter a guess");
             checkUserGuess(userGuess);

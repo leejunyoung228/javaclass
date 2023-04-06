@@ -24,16 +24,40 @@ public class GameHelper {
 
     public ArrayList<String> placeDotCom() {
         ArrayList<String> alphaCells = new ArrayList<>();
-        int randY=0;
-        int randX=0;
+        int randRow = 0;
+        int randCol = 0;
 
         comCount++;
         if (comCount % 2 == 1) {
             //가로
-
+            while (true) {
+                randRow = (int) (Math.random() * 1000) % 7; //0~6
+                randCol = (int) (Math.random() * 1000) % 5; //0~4
+                if (grid[randRow][randCol] == 0 && grid[randRow][randCol + 1] == 0 && grid[randRow][randCol + 2] == 0) {
+                    grid[randRow][randCol] = 1;
+                    grid[randRow][randCol+1] = 1;
+                    grid[randRow][randCol+2] = 1;
+                    break;
+                }
+            }
+            alphaCells.add(String.format(alphabet[randRow]+"%d",randCol));
+            alphaCells.add(String.format(alphabet[randRow]+"%d",randCol+1));
+            alphaCells.add(String.format(alphabet[randRow]+"%d",randCol+2));
         } else {
             //세로
-
+            while (true) {
+                randRow = (int) (Math.random() * 1000) % 5; //0~4
+                randCol = (int) (Math.random() * 1000) % 7; //0~6
+                if (grid[randRow][randCol] == 0 && grid[randRow+1][randCol] == 0 && grid[randRow+2][randCol] == 0) {
+                    grid[randRow][randCol] = 1;
+                    grid[randRow+1][randCol] = 1;
+                    grid[randRow+2][randCol] = 1;
+                    break;
+                }
+            }
+            alphaCells.add(String.format(alphabet[randRow]+"%d",randCol));
+            alphaCells.add(String.format(alphabet[randRow+1]+"%d",randCol));
+            alphaCells.add(String.format(alphabet[randRow+2]+"%d",randCol));
         }
         return alphaCells;
     }
